@@ -1,0 +1,13 @@
+shps<-dir(pattern='.shp')
+shps<-shps[-grep('.xml',shps)]
+
+for(i in 1:length(shps))
+{
+	size<-file.info(shps[i])$size
+	if(size==100)
+		{
+			filename<-gsub('.shp','',shps[i])
+			files<-dir(pattern=filename)
+			file.remove(files)
+		}
+}
