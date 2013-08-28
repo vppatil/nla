@@ -179,3 +179,10 @@ anova(connectivity.anova)
 summary(connectivity.anova)
 boxplot(anova.formula,data=big.dat,main='water chemistry by connectivity class',ylab=response)
 
+##########################################################################
+#creating breakdown of conductivity by other water quality variables
+watqual<-read.csv('watqual.csv')
+
+cond.parts.rf<-randomForest(log(COND)~NA.+CL+MG+CA+K+NH4ION,data=watqual)
+X11()
+varImpPlot(cond.parts.rf)
